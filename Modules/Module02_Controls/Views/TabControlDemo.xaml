@@ -1,0 +1,197 @@
+<Page x:Class="LearnXaml.Modules.Module02_Controls.Views.TabControlDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:LearnXaml.Modules.Module02_Controls.Views"
+      Title="TabControl 选项卡控件"
+      Background="{StaticResource BgBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <TextBlock Text="🗂 TabControl 选项卡控件" Style="{StaticResource TitleText}" />
+            <TextBlock Text="TabControl 通过选项卡组织多个页面内容，支持多种 TabStripPlacement 位置。"
+                       Foreground="#757575" Margin="0,0,0,20" FontSize="14" />
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="1. 基础 TabControl (TabStripPlacement=Top)"
+                               Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="默认情况下标签位于顶部。每个 TabItem 可以包含任意内容。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6"
+                            Background="White" Padding="3">
+                        <TabControl Height="200">
+                            <TabItem Header="🏠 首页">
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Text="🏠" FontSize="48" HorizontalAlignment="Center" />
+                                    <TextBlock Text="欢迎来到首页" FontSize="18" FontWeight="SemiBold"
+                                               HorizontalAlignment="Center" Margin="0,10,0,0" />
+                                    <TextBlock Text="这是 TabControl 的第一个标签页" FontSize="13"
+                                               Foreground="#9E9E9E" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem Header="📊 数据">
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Text="📊" FontSize="48" HorizontalAlignment="Center" />
+                                    <TextBlock Text="数据面板" FontSize="18" FontWeight="SemiBold"
+                                               HorizontalAlignment="Center" Margin="0,10,0,0" />
+                                    <TextBlock Text="这里可以显示图表、表格等数据内容" FontSize="13"
+                                               Foreground="#9E9E9E" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem Header="⚙ 设置">
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Text="⚙" FontSize="48" HorizontalAlignment="Center" />
+                                    <TextBlock Text="设置面板" FontSize="18" FontWeight="SemiBold"
+                                               HorizontalAlignment="Center" Margin="0,10,0,0" />
+                                    <TextBlock Text="在这里调整各种配置选项" FontSize="13"
+                                               Foreground="#9E9E9E" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </TabItem>
+                        </TabControl>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="2. TabStripPlacement - 标签位置" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="TabStripPlacement 有四种取值：Top（默认）、Bottom、Left、Right。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                            <TextBlock Text="TabStripPlacement=Left" FontSize="13"
+                                       Foreground="#616161" Margin="0,0,0,4" />
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4"
+                                    Background="White">
+                                <TabControl TabStripPlacement="Left" Height="150">
+                                    <TabItem Header="📁 文件" />
+                                    <TabItem Header="✏ 编辑" />
+                                    <TabItem Header="👁 视图" />
+                                    <TabItem Header="⚙ 工具" />
+                                </TabControl>
+                            </Border>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="TabStripPlacement=Bottom" FontSize="13"
+                                       Foreground="#616161" Margin="0,0,0,4" />
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4"
+                                    Background="White">
+                                <TabControl TabStripPlacement="Bottom" Height="150">
+                                    <TabItem Header="A" />
+                                    <TabItem Header="B" />
+                                    <TabItem Header="C" />
+                                </TabControl>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Text="TabStripPlacement=Right" FontSize="13"
+                               Foreground="#616161" Margin="0,12,0,4" />
+                    <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4"
+                            Background="White" Width="400">
+                        <TabControl TabStripPlacement="Right" Height="120">
+                            <TabItem Header="🔒 安全" />
+                            <TabItem Header="🔑 隐私" />
+                            <TabItem Header="📡 网络" />
+                        </TabControl>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="3. 自定义 TabItem 头部（带图标的标签）" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="通过设置 TabItem.Header 或 HeaderTemplate 自定义标签头部外观。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6"
+                            Background="White" Padding="3">
+                        <TabControl Height="160">
+                            <TabItem>
+                                <TabItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="📧" FontSize="16" Margin="0,0,6,0" />
+                                        <TextBlock Text="收件箱" VerticalAlignment="Center" />
+                                        <Border Background="#F44336" CornerRadius="8" Padding="5,1" Margin="8,0,0,0">
+                                            <TextBlock Text="3" FontSize="11" Foreground="White" FontWeight="Bold" />
+                                        </Border>
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <TextBlock Text="📧 收件箱内容区域" FontSize="14" Foreground="#616161"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </TabItem>
+                            <TabItem>
+                                <TabItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="⭐" FontSize="16" Margin="0,0,6,0" />
+                                        <TextBlock Text="收藏夹" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <TextBlock Text="⭐ 收藏夹内容区域" FontSize="14" Foreground="#616161"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </TabItem>
+                            <TabItem>
+                                <TabItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="🗑" FontSize="16" Margin="0,0,6,0" />
+                                        <TextBlock Text="已删除" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </TabItem.Header>
+                                <TextBlock Text="🗑 已删除内容区域" FontSize="14" Foreground="#616161"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </TabItem>
+                        </TabControl>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="4. 动态标签管理（添加/删除 TabItem）" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="在代码中动态添加和删除 TabItem，实现灵活的标签管理。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button x:Name="BtnAddTab" Content="➕ 添加标签" Style="{StaticResource DemoButton}"
+                                Background="{StaticResource AccentBrush}" FontSize="13" Padding="10,6"
+                                Click="BtnAddTab_Click" />
+                        <Button x:Name="BtnRemoveTab" Content="➖ 删除当前标签" Style="{StaticResource DemoButton}"
+                                Background="{StaticResource DangerBrush}" FontSize="13" Padding="10,6"
+                                Click="BtnRemoveTab_Click" />
+                        <Button x:Name="BtnRemoveAll" Content="✖ 删除所有" Style="{StaticResource DemoButton}"
+                                Background="#9E9E9E" FontSize="13" Padding="10,6"
+                                Click="BtnRemoveAll_Click" />
+                    </StackPanel>
+
+                    <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6"
+                            Background="White" Padding="3">
+                        <TabControl x:Name="TcDynamic" Height="220" SelectionChanged="TcDynamic_SelectionChanged">
+                            <TabItem Header="📌 固定标签 1">
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Text="这是一个固定标签页" FontSize="14" Foreground="#616161" />
+                                    <TextBlock Text="它不会被删除按钮删除" FontSize="12" Foreground="#BDBDBD"
+                                               Margin="0,5,0,0" />
+                                </StackPanel>
+                            </TabItem>
+                        </TabControl>
+                    </Border>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                        <TextBlock x:Name="TxtTabCount" Text="当前标签数: 1" FontSize="13"
+                                   Foreground="{StaticResource PrimaryBrush}" FontWeight="SemiBold" />
+                        <TextBlock x:Name="TxtTabName" Text="" FontSize="13"
+                                   Foreground="{StaticResource AccentBrush}" Margin="20,0,0,0" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

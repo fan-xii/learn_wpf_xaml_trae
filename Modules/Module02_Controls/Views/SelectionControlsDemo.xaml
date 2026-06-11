@@ -1,0 +1,235 @@
+<Page x:Class="LearnXaml.Modules.Module02_Controls.Views.SelectionControlsDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:LearnXaml.Modules.Module02_Controls.Views"
+      Title="选择控件"
+      Background="{StaticResource BgBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <TextBlock Text="✅ CheckBox / RadioButton / ComboBox / Slider" Style="{StaticResource TitleText}" />
+            <TextBlock Text="选择控件让用户从预设选项中进行选择。CheckBox 支持多选，RadioButton 支持单选，ComboBox 提供下拉选择，Slider 提供范围值选择。"
+                       Foreground="#757575" Margin="0,0,0,20" FontSize="14" />
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="1. CheckBox 复选框" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="CheckBox 支持两态（选中/未选中）和三态（IsThreeState=True）。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <TextBlock Text="普通 CheckBox (两态):" FontSize="13" Foreground="#616161" Margin="0,0,0,5" />
+                    <StackPanel Margin="0,0,0,15">
+                        <CheckBox x:Name="ChkAccept" Content="我同意服务条款"
+                                  Checked="ChkAccept_Checked" Unchecked="ChkAccept_Unchecked" />
+                        <CheckBox x:Name="ChkSubscribe" Content="订阅邮件通知"
+                                  Checked="ChkSubscribe_Checked" Unchecked="ChkSubscribe_Unchecked" />
+                        <CheckBox x:Name="ChkSaveInfo" Content="记住我的登录信息" IsChecked="True" />
+                    </StackPanel>
+
+                    <TextBlock Text="三态 CheckBox (IsThreeState=True):" FontSize="13" Foreground="#616161" Margin="0,0,0,5" />
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                        <CheckBox x:Name="ChkThreeState" Content="全选/部分选中/全不选"
+                                  IsThreeState="True" Checked="ChkThreeState_Checked"
+                                  Unchecked="ChkThreeState_Unchecked"
+                                  Indeterminate="ChkThreeState_Indeterminate" />
+                    </StackPanel>
+
+                    <TextBlock x:Name="TxtCheckBoxStatus" Text="选择状态将在这里显示" FontSize="13"
+                               Foreground="{StaticResource PrimaryBrush}" FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="2. RadioButton 单选按钮" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="RadioButton 通过 GroupName 实现分组互斥选择。同一 GroupName 中只能选一个。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <TextBlock Text="请选择支付方式:" FontSize="13" Foreground="#616161" Margin="0,0,0,8" />
+                    <StackPanel Margin="0,0,0,15">
+                        <RadioButton x:Name="RbWechat" Content="💚 微信支付" GroupName="Payment"
+                                     IsChecked="True" Checked="Payment_Checked" />
+                        <RadioButton x:Name="RbAlipay" Content="💙 支付宝" GroupName="Payment"
+                                     Checked="Payment_Checked" />
+                        <RadioButton x:Name="RbBank" Content="🏦 银行卡" GroupName="Payment"
+                                     Checked="Payment_Checked" />
+                        <RadioButton x:Name="RbCash" Content="💵 货到付款" GroupName="Payment"
+                                     Checked="Payment_Checked" />
+                    </StackPanel>
+
+                    <TextBlock Text="请选择快递:" FontSize="13" Foreground="#616161" Margin="0,0,0,8" />
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton x:Name="RbExpress" Content="顺丰速运" GroupName="Shipping"
+                                     IsChecked="True" Checked="Shipping_Checked" Margin="0,0,15,0" />
+                        <RadioButton x:Name="RbNormal" Content="中通快递" GroupName="Shipping"
+                                     Checked="Shipping_Checked" Margin="0,0,15,0" />
+                        <RadioButton x:Name="RbEconomy" Content="邮政" GroupName="Shipping"
+                                     Checked="Shipping_Checked" />
+                    </StackPanel>
+
+                    <TextBlock x:Name="TxtRadioStatus" Text="已选支付: 微信支付, 已选快递: 顺丰速运"
+                               FontSize="13" Foreground="{StaticResource AccentBrush}"
+                               FontWeight="SemiBold" Margin="0,12,0,0" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="3. ComboBox 下拉选择框" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="ComboBox 提供下拉选择列表，支持 IsEditable（可编辑）和 IsReadOnly（只读）模式。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                            <TextBlock Text="普通只读 ComboBox:" FontSize="13" Foreground="#616161" Margin="0,0,0,4" />
+                            <ComboBox x:Name="CboCity" Width="250" Height="28"
+                                      IsReadOnly="True" SelectionChanged="CboCity_SelectionChanged"
+                                      SelectedIndex="0">
+                                <ComboBoxItem Content="北京" />
+                                <ComboBoxItem Content="上海" />
+                                <ComboBoxItem Content="广州" />
+                                <ComboBoxItem Content="深圳" />
+                                <ComboBoxItem Content="杭州" />
+                                <ComboBoxItem Content="成都" />
+                            </ComboBox>
+                            <TextBlock x:Name="TxtCitySelected" Text="当前选择: 北京" FontSize="12"
+                                       Foreground="{StaticResource PrimaryBrush}" Margin="0,3,0,15" />
+
+                            <TextBlock Text="可编辑 ComboBox (IsEditable=True):" FontSize="13"
+                                       Foreground="#616161" Margin="0,0,0,4" />
+                            <ComboBox x:Name="CboColor" IsEditable="True" Width="250" Height="28"
+                                      IsReadOnly="False">
+                                <ComboBoxItem Content="红色" />
+                                <ComboBoxItem Content="蓝色" />
+                                <ComboBoxItem Content="绿色" />
+                                <ComboBoxItem Content="黄色" />
+                                <ComboBoxItem Content="紫色" />
+                            </ComboBox>
+                            <TextBlock Text="你可以输入自定义颜色名称" FontSize="12" Foreground="#9E9E9E" Margin="0,3,0,0" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="ComboBox 除了 XAML 直接添加项，也可以在代码中绑定 ItemsSource。"
+                                       FontSize="12" Foreground="#9E9E9E" TextWrapping="Wrap" Margin="0,0,0,8" />
+                            <TextBlock Text="SelectedItem / SelectedValue / SelectedIndex 都可用于获取选中项。"
+                                       FontSize="12" Foreground="#9E9E9E" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="4. Slider 滑块控件" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="Slider 允许用户通过拖动滑块在一个范围内选择数值。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <TextBlock Text="带刻度滑块 (TickFrequency=10, IsSnapToTickEnabled=True):"
+                               FontSize="13" Foreground="#616161" Margin="0,0,0,4" />
+                    <StackPanel Orientation="Horizontal">
+                        <Slider x:Name="SldValue" Minimum="0" Maximum="100" Value="50"
+                                Width="350" TickFrequency="10" IsSnapToTickEnabled="True"
+                                TickPlacement="Both" ValueChanged="SldValue_ValueChanged" />
+                        <TextBlock x:Name="TxtSliderValue" Text="50" FontSize="18" FontWeight="Bold"
+                                   Foreground="{StaticResource PrimaryBrush}" Margin="15,0,0,0"
+                                   VerticalAlignment="Center" Width="50" />
+                    </StackPanel>
+
+                    <TextBlock Text="音量调节模拟:" FontSize="13" Foreground="#616161"
+                               Margin="0,15,0,4" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🔇" FontSize="16" VerticalAlignment="Center" />
+                        <Slider x:Name="SldVolume" Minimum="0" Maximum="100" Value="70"
+                                Width="300" Margin="10,0" ValueChanged="SldVolume_ValueChanged" />
+                        <TextBlock Text="🔊" FontSize="16" VerticalAlignment="Center" />
+                        <TextBlock x:Name="TxtVolume" Text="70%" FontSize="16" FontWeight="Bold"
+                                   Foreground="{StaticResource PrimaryBrush}" Margin="10,0,0,0"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}" Background="#FFF3E0" BorderBrush="#FFCC80">
+                <StackPanel>
+                    <TextBlock Text="🍕 实战演练: 比萨订购表单" Style="{StaticResource SubTitleText}"
+                               Foreground="#E65100" />
+                    <TextBlock Text="综合运用 CheckBox、RadioButton、ComboBox、Slider 控件。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,12" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="选择尺寸 (RadioButton):" FontSize="13"
+                                       Foreground="#616161" Margin="0,0,0,4" />
+                            <RadioButton x:Name="RbSmall" Content="小份 (6寸) - ¥29" GroupName="PizzaSize"
+                                         IsChecked="True" Checked="PizzaSize_Checked" />
+                            <RadioButton x:Name="RbMedium" Content="中份 (9寸) - ¥49" GroupName="PizzaSize"
+                                         Checked="PizzaSize_Checked" />
+                            <RadioButton x:Name="RbLarge" Content="大份 (12寸) - ¥69" GroupName="PizzaSize"
+                                         Checked="PizzaSize_Checked" />
+
+                            <TextBlock Text="选择配料 (CheckBox 多选):" FontSize="13"
+                                       Foreground="#616161" Margin="0,12,0,4" />
+                            <CheckBox x:Name="ChkCheese" Content="额外芝士 +¥5" Checked="Topping_Changed"
+                                      Unchecked="Topping_Changed" />
+                            <CheckBox x:Name="ChkPepperoni" Content="意大利腊肠 +¥8" Checked="Topping_Changed"
+                                      Unchecked="Topping_Changed" />
+                            <CheckBox x:Name="ChkMushroom" Content="蘑菇 +¥4" Checked="Topping_Changed"
+                                      Unchecked="Topping_Changed" />
+                            <CheckBox x:Name="ChkBacon" Content="培根 +¥6" Checked="Topping_Changed"
+                                      Unchecked="Topping_Changed" />
+
+                            <TextBlock Text="数量 (Slider):" FontSize="13"
+                                       Foreground="#616161" Margin="0,12,0,4" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider x:Name="SldQuantity" Minimum="1" Maximum="5" Value="1"
+                                        Width="200" TickFrequency="1" IsSnapToTickEnabled="True"
+                                        ValueChanged="SldQuantity_ValueChanged" />
+                                <TextBlock x:Name="TxtQuantity" Text="1 个" FontSize="14"
+                                           FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"
+                                           Margin="10,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="饮品选择 (ComboBox):" FontSize="13"
+                                       Foreground="#616161" Margin="0,0,0,4" />
+                            <ComboBox x:Name="CboDrink" Width="240" Height="28"
+                                      IsReadOnly="True" SelectedIndex="0"
+                                      SelectionChanged="CboDrink_SelectionChanged">
+                                <ComboBoxItem Content="可乐 - ¥5" />
+                                <ComboBoxItem Content="雪碧 - ¥5" />
+                                <ComboBoxItem Content="橙汁 - ¥8" />
+                                <ComboBoxItem Content="矿泉水 - ¥2" />
+                                <ComboBoxItem Content="不选饮品" />
+                            </ComboBox>
+
+                            <Border Background="White" CornerRadius="6" Padding="15"
+                                    BorderBrush="#E0E0E0" BorderThickness="1" Margin="0,25,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="📋 订单摘要" FontSize="15" FontWeight="Bold"
+                                               Foreground="#E65100" Margin="0,0,0,10" />
+                                    <TextBlock x:Name="TxtOrderSummary" Text="小份 比萨 x 1&#x0a;总价: ¥29"
+                                               FontSize="14" Foreground="#616161"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock x:Name="TxtOrderTotal" Text="💰 总计: ¥29.00"
+                                               FontSize="18" FontWeight="Bold"
+                                               Foreground="{StaticResource DangerBrush}" Margin="0,8,0,0" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

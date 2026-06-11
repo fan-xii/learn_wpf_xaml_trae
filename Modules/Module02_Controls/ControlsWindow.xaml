@@ -1,0 +1,57 @@
+<Window x:Class="LearnXaml.Modules.Module02_Controls.ControlsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="🎛 常用控件详解" Height="750" Width="1050"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BgBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{StaticResource PrimaryBrush}" Padding="15,12">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="BtnBack" Content="⬅ 返回主页" Style="{StaticResource DemoButton}"
+                            Background="#1565C0" Foreground="White" FontSize="13"
+                            Padding="12,6" Click="BtnBack_Click" />
+                </StackPanel>
+                <TextBlock Text="🎛 常用控件详解 —— 从 Button 到 DataGrid"
+                           FontSize="20" FontWeight="Bold" Foreground="White"
+                           HorizontalAlignment="Center" />
+            </Grid>
+        </Border>
+
+        <TabControl Grid.Row="1" x:Name="MainTabControl"
+                    SelectionChanged="MainTabControl_SelectionChanged"
+                    Margin="10" Background="White"
+                    BorderBrush="#E0E0E0" BorderThickness="1">
+            <TabItem x:Name="TabButton" Header="🔘 Button">
+                <Frame x:Name="FrameButton" NavigationUIVisibility="Hidden" />
+            </TabItem>
+            <TabItem x:Name="TabTextBox" Header="📝 TextBox">
+                <Frame x:Name="FrameTextBox" NavigationUIVisibility="Hidden" />
+            </TabItem>
+            <TabItem x:Name="TabSelection" Header="✅ 选择控件">
+                <Frame x:Name="FrameSelection" NavigationUIVisibility="Hidden" />
+            </TabItem>
+            <TabItem x:Name="TabList" Header="📋 列表控件">
+                <Frame x:Name="FrameList" NavigationUIVisibility="Hidden" />
+            </TabItem>
+            <TabItem x:Name="TabDataGrid" Header="📊 DataGrid">
+                <Frame x:Name="FrameDataGrid" NavigationUIVisibility="Hidden" />
+            </TabItem>
+            <TabItem x:Name="TabTreeView" Header="🌳 TreeView">
+                <Frame x:Name="FrameTreeView" NavigationUIVisibility="Hidden" />
+            </TabItem>
+            <TabItem x:Name="TabMenu" Header="📂 菜单&amp;工具栏">
+                <Frame x:Name="FrameMenu" NavigationUIVisibility="Hidden" />
+            </TabItem>
+            <TabItem x:Name="TabTabControl" Header="🗂 TabControl">
+                <Frame x:Name="FrameTabControl" NavigationUIVisibility="Hidden" />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

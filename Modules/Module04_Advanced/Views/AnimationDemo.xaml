@@ -1,0 +1,440 @@
+<Page x:Class="LearnXaml.Modules.Module04_Advanced.Views.AnimationDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:LearnXaml.Modules.Module04_Advanced.Views"
+      Title="动画效果演示"
+      Background="{StaticResource BgBrush}">
+
+    <Page.Resources>
+        <!-- ===== 宽度动画 + 缓动函数 ===== -->
+        <Storyboard x:Key="WidthStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="Width"
+                             From="100" To="300" Duration="0:0:1.5"
+                             AutoReverse="True" RepeatBehavior="Forever">
+                <DoubleAnimation.EasingFunction>
+                    <ElasticEase Oscillations="3" Springiness="5" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <!-- ===== 颜色动画 ===== -->
+        <Storyboard x:Key="ColorStoryboard">
+            <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)"
+                            From="#2196F3" To="#FF5722" Duration="0:0:2"
+                            AutoReverse="True" RepeatBehavior="Forever" />
+        </Storyboard>
+
+        <!-- ===== 变换动画（旋转+缩放+平移） ===== -->
+        <Storyboard x:Key="TransformStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)"
+                             From="0" To="360" Duration="0:0:3"
+                             RepeatBehavior="Forever" />
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
+                             From="1" To="1.5" Duration="0:0:1.5"
+                             AutoReverse="True" RepeatBehavior="Forever" />
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
+                             From="1" To="1.5" Duration="0:0:1.5"
+                             AutoReverse="True" RepeatBehavior="Forever" />
+        </Storyboard>
+
+        <!-- ===== 弹跳动画 (BounceEase) ===== -->
+        <Storyboard x:Key="BounceStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)"
+                             From="0" To="180" Duration="0:0:2"
+                             AutoReverse="True" RepeatBehavior="Forever">
+                <DoubleAnimation.EasingFunction>
+                    <BounceEase Bounces="4" Bounciness="3" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <!-- ===== 组合动画 ===== -->
+        <Storyboard x:Key="CombinedStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="1.0" To="0.3" Duration="0:0:1.5"
+                             AutoReverse="True" RepeatBehavior="Forever" />
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(RotateTransform.Angle)"
+                             From="0" To="360" Duration="0:0:4"
+                             RepeatBehavior="Forever" />
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
+                             From="1" To="1.3" Duration="0:0:1"
+                             AutoReverse="True" RepeatBehavior="Forever" />
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
+                             From="1" To="1.3" Duration="0:0:1"
+                             AutoReverse="True" RepeatBehavior="Forever" />
+        </Storyboard>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+
+            <!-- ============ 标题 ============ -->
+            <TextBlock Text="🎬 WPF 动画效果" Style="{StaticResource TitleText}" />
+
+            <!-- ============ 1. 弹跳球动画 (事件触发) ============ -->
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="1. 弹跳球 (BounceEase + 事件触发器)" Style="{StaticResource SubTitleText}" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- 动画区域 -->
+                        <Border Grid.Column="0" Background="White" CornerRadius="6" Padding="10"
+                                BorderBrush="#E0E0E0" BorderThickness="1" Height="260">
+                            <Canvas>
+                                <Ellipse x:Name="BounceBall" Width="50" Height="50"
+                                         Fill="{StaticResource PrimaryBrush}" Canvas.Left="95">
+                                    <Ellipse.Triggers>
+                                        <EventTrigger RoutedEvent="MouseLeftButtonDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)"
+                                                                     From="0" To="180" Duration="0:0:1.5"
+                                                                     AutoReverse="True" RepeatBehavior="Forever">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <BounceEase Bounces="3" Bounciness="4" EasingMode="EaseOut" />
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                     From="50" To="70" Duration="0:0:0.75"
+                                                                     AutoReverse="True" RepeatBehavior="Forever" />
+                                                    <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                                     From="50" To="30" Duration="0:0:0.75"
+                                                                     AutoReverse="True" RepeatBehavior="Forever" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Ellipse.Triggers>
+                                </Ellipse>
+                                <TextBlock Canvas.Left="109" Canvas.Top="17"
+                                           Text="点击我!" FontSize="10" Foreground="White" />
+                            </Canvas>
+                        </Border>
+
+                        <StackPanel Grid.Column="1" Margin="15,0,0,0">
+                            <TextBlock Text="点击球体触发 EventTrigger 动画" FontWeight="SemiBold" Foreground="#424242" />
+                            <TextBlock Text="· 使用 EventTrigger + BeginStoryboard" Margin="0,4,0,0" Foreground="#616161" />
+                            <TextBlock Text="· BounceEase: 模拟弹性碰撞效果" Foreground="#616161" />
+                            <TextBlock Text="· 同时改变位置和形状" Foreground="#616161" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- ============ 2. 矩形的各种动画 ============ -->
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="2. 矩形动画演示区" Style="{StaticResource SubTitleText}" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- 动画目标 -->
+                        <Border Grid.Column="0" Background="White" CornerRadius="6" Padding="15"
+                                BorderBrush="#E0E0E0" BorderThickness="1" Height="220">
+                            <Grid>
+                                <Rectangle x:Name="AnimatedRectangle" Width="100" Height="60"
+                                           Fill="{StaticResource PrimaryBrush}" RadiusX="8" RadiusY="8"
+                                           RenderTransformOrigin="0.5,0.5">
+                                    <Rectangle.RenderTransform>
+                                        <TransformGroup>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                            <TranslateTransform X="0" Y="0" />
+                                        </TransformGroup>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                            </Grid>
+                        </Border>
+
+                        <!-- 控制按钮 -->
+                        <StackPanel Grid.Column="1" Margin="15,0,0,0">
+                            <TextBlock Text="按钮触发动画" FontWeight="SemiBold" Foreground="#424242" Margin="0,0,0,6" />
+
+                            <WrapPanel>
+                                <Button Content="宽度动画 (ElasticEase)" Style="{StaticResource DemoButton}"
+                                        Click="OnStartWidthAnimation" />
+                                <Button Content="颜色动画 (ColorAnimation)" Style="{StaticResource DemoButton}"
+                                        Click="OnStartColorAnimation"
+                                        Background="{StaticResource SecondaryBrush}" />
+                                <Button Content="变换动画 (旋转+缩放)" Style="{StaticResource DemoButton}"
+                                        Click="OnStartTransformAnimation"
+                                        Background="{StaticResource AccentBrush}" />
+                                <Button Content="弹跳动画 (BounceEase)" Style="{StaticResource DemoButton}"
+                                        Click="OnStartBounceAnimation"
+                                        Background="#9C27B0" />
+                            </WrapPanel>
+
+                            <TextBlock Text="各种缓动函数说明：" Margin="0,10,0,4" FontWeight="SemiBold" Foreground="#424242" />
+                            <TextBlock Text="· ElasticEase: 像弹簧一样回弹" Foreground="#616161" FontSize="12" />
+                            <TextBlock Text="· BounceEase: 模拟弹跳效果" Foreground="#616161" FontSize="12" />
+                            <TextBlock Text="· BackEase: 先反向运动再前进" Foreground="#616161" FontSize="12" />
+                            <TextBlock Text="· CubicEase: 三次方加速/减速" Foreground="#616161" FontSize="12" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- ============ 3. 组合动画 + 暂停/恢复/停止 ============ -->
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="3. 组合动画（暂停/恢复/停止控制）" Style="{StaticResource SubTitleText}" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- 组合动画目标 -->
+                        <Border Grid.Column="0" Background="White" CornerRadius="6" Padding="10"
+                                BorderBrush="#E0E0E0" BorderThickness="1" Height="180">
+                            <Border x:Name="CombinedTarget" Width="80" Height="80"
+                                    CornerRadius="40" Background="{StaticResource SecondaryBrush}"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="0" />
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                                <TextBlock Text="动画" Foreground="White" FontWeight="Bold"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </Border>
+
+                        <StackPanel Grid.Column="1" Margin="15,0,0,0">
+                            <TextBlock Text="组合效果：旋转 + 缩放 + 透明度" FontWeight="SemiBold" Foreground="#424242" />
+                            <WrapPanel Margin="0,8,0,0">
+                                <Button Content="▶ 开始" Style="{StaticResource DemoButton}"
+                                        Background="{StaticResource AccentBrush}"
+                                        Click="OnStartCombinedAnimation" />
+                                <Button Content="⏸ 暂停" Style="{StaticResource DemoButton}"
+                                        Background="{StaticResource SecondaryBrush}"
+                                        Click="OnPauseCombined" />
+                                <Button Content="▶ 恢复" Style="{StaticResource DemoButton}"
+                                        Background="{StaticResource PrimaryBrush}"
+                                        Click="OnResumeCombined" />
+                                <Button Content="⏹ 停止" Style="{StaticResource DemoButton}"
+                                        Background="{StaticResource DangerBrush}"
+                                        Click="OnStopCombined" />
+                            </WrapPanel>
+                            <TextBlock Text="使用 Storyboard.Pause / Resume / Stop 方法" Margin="0,8,0,0"
+                                       Foreground="#757575" FontSize="12" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- ============ 4. 缓动函数对比 ============ -->
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="4. 缓动函数 (Easing Functions) 对比" Style="{StaticResource SubTitleText}" />
+
+                    <UniformGrid Columns="3" Rows="2">
+                        <!-- ElasticEase -->
+                        <Border Background="White" CornerRadius="6" Padding="10" Margin="4"
+                                BorderBrush="#E0E0E0" BorderThickness="1" Height="130">
+                            <StackPanel>
+                                <TextBlock Text="ElasticEase（弹性）" FontWeight="SemiBold" FontSize="11"
+                                           HorizontalAlignment="Center" Foreground="#7B1FA2" />
+                                <Border Width="80" Height="6" Background="#E0E0E0" CornerRadius="3"
+                                        HorizontalAlignment="Center" Margin="0,6,0,0">
+                                    <Border x:Name="ElasticBar" Width="8" Height="6"
+                                            Background="#7B1FA2" CornerRadius="3"
+                                            HorizontalAlignment="Left">
+                                        <Border.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                         From="8" To="80" Duration="0:0:1.5">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <ElasticEase Oscillations="3" Springiness="3" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Border.Triggers>
+                                    </Border>
+                                </Border>
+                                <TextBlock Text="鼠标悬停触发" FontSize="9" Foreground="#757575"
+                                           HorizontalAlignment="Center" Margin="0,4,0,0" />
+                            </StackPanel>
+                        </Border>
+
+                        <!-- BackEase -->
+                        <Border Background="White" CornerRadius="6" Padding="10" Margin="4"
+                                BorderBrush="#E0E0E0" BorderThickness="1" Height="130">
+                            <StackPanel>
+                                <TextBlock Text="BackEase（回退）" FontWeight="SemiBold" FontSize="11"
+                                           HorizontalAlignment="Center" Foreground="#1565C0" />
+                                <Border Width="80" Height="6" Background="#E0E0E0" CornerRadius="3"
+                                        HorizontalAlignment="Center" Margin="0,6,0,0">
+                                    <Border x:Name="BackBar" Width="8" Height="6"
+                                            Background="#1565C0" CornerRadius="3"
+                                            HorizontalAlignment="Left">
+                                        <Border.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                         From="8" To="80" Duration="0:0:1">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <BackEase Amplitude="0.5" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Border.Triggers>
+                                    </Border>
+                                </Border>
+                                <TextBlock Text="鼠标悬停触发" FontSize="9" Foreground="#757575"
+                                           HorizontalAlignment="Center" Margin="0,4,0,0" />
+                            </StackPanel>
+                        </Border>
+
+                        <!-- PowerEase -->
+                        <Border Background="White" CornerRadius="6" Padding="10" Margin="4"
+                                BorderBrush="#E0E0E0" BorderThickness="1" Height="130">
+                            <StackPanel>
+                                <TextBlock Text="PowerEase（幂次）" FontWeight="SemiBold" FontSize="11"
+                                           HorizontalAlignment="Center" Foreground="#2E7D32" />
+                                <Border Width="80" Height="6" Background="#E0E0E0" CornerRadius="3"
+                                        HorizontalAlignment="Center" Margin="0,6,0,0">
+                                    <Border x:Name="PowerBar" Width="8" Height="6"
+                                            Background="#2E7D32" CornerRadius="3"
+                                            HorizontalAlignment="Left">
+                                        <Border.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                         From="8" To="80" Duration="0:0:1">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <PowerEase Power="5" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Border.Triggers>
+                                    </Border>
+                                </Border>
+                                <TextBlock Text="鼠标悬停触发" FontSize="9" Foreground="#757575"
+                                           HorizontalAlignment="Center" Margin="0,4,0,0" />
+                            </StackPanel>
+                        </Border>
+
+                        <!-- SineEase -->
+                        <Border Background="White" CornerRadius="6" Padding="10" Margin="4"
+                                BorderBrush="#E0E0E0" BorderThickness="1" Height="130">
+                            <StackPanel>
+                                <TextBlock Text="SineEase（正弦）" FontWeight="SemiBold" FontSize="11"
+                                           HorizontalAlignment="Center" Foreground="#E65100" />
+                                <Border Width="80" Height="6" Background="#E0E0E0" CornerRadius="3"
+                                        HorizontalAlignment="Center" Margin="0,6,0,0">
+                                    <Border x:Name="SineBar" Width="8" Height="6"
+                                            Background="#E65100" CornerRadius="3"
+                                            HorizontalAlignment="Left">
+                                        <Border.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                         From="8" To="80" Duration="0:0:1">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <SineEase />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Border.Triggers>
+                                    </Border>
+                                </Border>
+                                <TextBlock Text="鼠标悬停触发" FontSize="9" Foreground="#757575"
+                                           HorizontalAlignment="Center" Margin="0,4,0,0" />
+                            </StackPanel>
+                        </Border>
+
+                        <!-- CircleEase -->
+                        <Border Background="White" CornerRadius="6" Padding="10" Margin="4"
+                                BorderBrush="#E0E0E0" BorderThickness="1" Height="130">
+                            <StackPanel>
+                                <TextBlock Text="CircleEase（圆形）" FontWeight="SemiBold" FontSize="11"
+                                           HorizontalAlignment="Center" Foreground="#C62828" />
+                                <Border Width="80" Height="6" Background="#E0E0E0" CornerRadius="3"
+                                        HorizontalAlignment="Center" Margin="0,6,0,0">
+                                    <Border x:Name="CircleBar" Width="8" Height="6"
+                                            Background="#C62828" CornerRadius="3"
+                                            HorizontalAlignment="Left">
+                                        <Border.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                         From="8" To="80" Duration="0:0:1">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CircleEase />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Border.Triggers>
+                                    </Border>
+                                </Border>
+                                <TextBlock Text="鼠标悬停触发" FontSize="9" Foreground="#757575"
+                                           HorizontalAlignment="Center" Margin="0,4,0,0" />
+                            </StackPanel>
+                        </Border>
+
+                        <!-- BounceEase -->
+                        <Border Background="White" CornerRadius="6" Padding="10" Margin="4"
+                                BorderBrush="#E0E0E0" BorderThickness="1" Height="130">
+                            <StackPanel>
+                                <TextBlock Text="BounceEase（弹跳）" FontWeight="SemiBold" FontSize="11"
+                                           HorizontalAlignment="Center" Foreground="#6A1B9A" />
+                                <Border Width="80" Height="6" Background="#E0E0E0" CornerRadius="3"
+                                        HorizontalAlignment="Center" Margin="0,6,0,0">
+                                    <Border x:Name="BounceEasingBar" Width="8" Height="6"
+                                            Background="#6A1B9A" CornerRadius="3"
+                                            HorizontalAlignment="Left">
+                                        <Border.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                         From="8" To="80" Duration="0:0:1.5">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <BounceEase Bounces="3" Bounciness="2" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Border.Triggers>
+                                    </Border>
+                                </Border>
+                                <TextBlock Text="鼠标悬停触发" FontSize="9" Foreground="#757575"
+                                           HorizontalAlignment="Center" Margin="0,4,0,0" />
+                            </StackPanel>
+                        </Border>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

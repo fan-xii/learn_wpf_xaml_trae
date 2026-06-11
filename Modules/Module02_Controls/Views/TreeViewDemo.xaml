@@ -1,0 +1,115 @@
+<Page x:Class="LearnXaml.Modules.Module02_Controls.Views.TreeViewDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:LearnXaml.Modules.Module02_Controls.Views"
+      Title="TreeView 树形控件"
+      Background="{StaticResource BgBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <TextBlock Text="🌳 TreeView 树形控件" Style="{StaticResource TitleText}" />
+            <TextBlock Text="TreeView 以树状结构展示层级数据，结合 HierarchicalDataTemplate 实现多级嵌套。"
+                       Foreground="#757575" Margin="0,0,0,20" FontSize="14" />
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="1. 基础 TreeView - 静态定义" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="直接使用 TreeViewItem 嵌套构建树结构。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <TreeView x:Name="TvBasic" Width="350" Height="200"
+                              SelectedItemChanged="TvBasic_SelectedItemChanged">
+                        <TreeViewItem Header="🏢 公司" IsExpanded="True">
+                            <TreeViewItem Header="💼 技术部" IsExpanded="True">
+                                <TreeViewItem Header="👨‍💻 前端组" />
+                                <TreeViewItem Header="🖥 后端组" />
+                                <TreeViewItem Header="📱 移动端组" />
+                            </TreeViewItem>
+                            <TreeViewItem Header="📊 市场部">
+                                <TreeViewItem Header="📢 品牌组" />
+                                <TreeViewItem Header="💰 销售组" />
+                            </TreeViewItem>
+                            <TreeViewItem Header="👥 人事部">
+                                <TreeViewItem Header="📋 招聘组" />
+                                <TreeViewItem Header="🎓 培训组" />
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeView>
+
+                    <TextBlock x:Name="TxtTvBasicSelect" Text="请选择节点" FontSize="13"
+                               Foreground="{StaticResource PrimaryBrush}" Margin="0,8,0,0" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="2. 数据绑定 + HierarchicalDataTemplate" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="使用 HierarchicalDataTemplate 自动生成多级树节点，支持 ItemsSource 绑定。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button x:Name="BtnExpandAll" Content="📂 全部展开" Style="{StaticResource DemoButton}"
+                                Background="{StaticResource AccentBrush}" FontSize="13" Padding="10,6"
+                                Click="BtnExpandAll_Click" />
+                        <Button x:Name="BtnCollapseAll" Content="📁 全部折叠" Style="{StaticResource DemoButton}"
+                                Background="#FF9800" FontSize="13" Padding="10,6"
+                                Click="BtnCollapseAll_Click" />
+                    </StackPanel>
+
+                    <TreeView x:Name="TvFileSystem" Width="500" Height="300"
+                              SelectedItemChanged="TvFileSystem_SelectedItemChanged">
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Icon}" FontSize="16" Margin="0,0,6,0" />
+                                    <TextBlock Text="{Binding Name}" FontSize="13" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+
+                    <TextBlock x:Name="TxtTvFileSelect" Text="请选择文件或文件夹" FontSize="13"
+                               Foreground="{StaticResource AccentBrush}" Margin="0,8,0,0" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="3. TreeView 常用场景" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="TreeView 常用于：文件浏览器、组织结构图、分类导航、菜单层级等。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                            <TextBlock Text="多层级分类树:" FontSize="13" Foreground="#616161" Margin="0,0,0,4" />
+                            <TreeView x:Name="TvCategory" Width="280" Height="180"
+                                      SelectedItemChanged="TvCategory_SelectedItemChanged">
+                                <TreeView.ItemTemplate>
+                                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                        <TextBlock Text="{Binding Name}" FontSize="13" />
+                                    </HierarchicalDataTemplate>
+                                </TreeView.ItemTemplate>
+                            </TreeView>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <Border Background="White" CornerRadius="6" Padding="15"
+                                    BorderBrush="#E0E0E0" BorderThickness="1">
+                                <TextBlock Text="⚠ TreeView 性能提示:&#x0a;&#x0a;• 大量节点时使用虚拟化（VirtualizingStackPanel）&#x0a;• 按需加载子节点（懒加载）&#x0a;• 不要一次性展开所有深层节点"
+                                           FontSize="12" Foreground="#616161" TextWrapping="Wrap" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock x:Name="TxtTvCategorySelect" Text="点击节点查看详情" FontSize="13"
+                               Foreground="{StaticResource PrimaryBrush}" Margin="0,8,0,0" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

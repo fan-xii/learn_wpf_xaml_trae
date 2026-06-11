@@ -1,0 +1,217 @@
+<Page x:Class="LearnXaml.Modules.Module01_Layout.Views.DockPanelDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:LearnXaml.Modules.Module01_Layout.Views"
+      Title="DockPanel 停靠布局"
+      Background="{StaticResource BgBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+
+            <TextBlock Text="DockPanel 停靠布局" Style="{StaticResource TitleText}" />
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="📖 基本概念" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="DockPanel 将子元素停靠（Dock）到面板的某一边，剩余空间由最后一个子元素填充。"
+                               Foreground="#616161" TextWrapping="Wrap" Margin="0,3,0,0" />
+                    <TextBlock Text="• DockPanel.Dock — 指定停靠方向（Top / Bottom / Left / Right）"
+                               Foreground="#616161" Margin="0,2,0,0" />
+                    <TextBlock Text="• LastChildFill — 最后一个元素是否自动填充剩余空间（默认 True）"
+                               Foreground="#616161" Margin="0,2,0,0" />
+                    <TextBlock Text="• 适合创建带有工具栏、状态栏等固定区域的界面"
+                               Foreground="#616161" Margin="0,2,0,0" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="🏠 模拟应用程序布局" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="展示典型桌面应用布局：菜单栏、工具栏、侧边栏、内容区、状态栏"
+                               Foreground="#757575" Margin="0,0,0,10" />
+
+                    <Border BorderBrush="#BDBDBD" BorderThickness="1" CornerRadius="4"
+                            Height="400" Background="White">
+                        <DockPanel LastChildFill="True">
+
+                            <Border DockPanel.Dock="Top" Background="#1976D2" Padding="10,6">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="菜单栏：" Foreground="White" FontWeight="Bold"
+                                               VerticalAlignment="Center" Margin="0,0,10,0" />
+                                    <TextBlock Text="文件" Foreground="#BBDEFB" Margin="8,0"
+                                               FontSize="13" Cursor="Hand" />
+                                    <TextBlock Text="编辑" Foreground="#BBDEFB" Margin="8,0"
+                                               FontSize="13" Cursor="Hand" />
+                                    <TextBlock Text="视图" Foreground="#BBDEFB" Margin="8,0"
+                                               FontSize="13" Cursor="Hand" />
+                                    <TextBlock Text="帮助" Foreground="#BBDEFB" Margin="8,0"
+                                               FontSize="13" Cursor="Hand" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border DockPanel.Dock="Top" Background="#E3F2FD" Padding="10,5">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="工具栏：" Foreground="#1565C0" FontWeight="Bold"
+                                               VerticalAlignment="Center" Margin="0,0,10,0" />
+                                    <Button Content="新建" Style="{StaticResource DemoButton}"
+                                            Padding="8,4" FontSize="12" />
+                                    <Button Content="打开" Style="{StaticResource DemoButton}"
+                                            Padding="8,4" FontSize="12" />
+                                    <Button Content="保存" Style="{StaticResource DemoButton}"
+                                            Padding="8,4" FontSize="12" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border DockPanel.Dock="Bottom" Background="#424242" Padding="10,6">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="状态栏：" Foreground="#BDBDBD" FontWeight="Bold"
+                                               VerticalAlignment="Center" Margin="0,0,10,0" />
+                                    <TextBlock Text="就绪 | 行: 1 列: 0 | 编码: UTF-8"
+                                               Foreground="#9E9E9E" FontSize="12"
+                                               VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border DockPanel.Dock="Left" Background="#F5F5F5"
+                                    Width="160" Padding="10">
+                                <StackPanel>
+                                    <TextBlock Text="侧边栏" FontWeight="Bold" FontSize="14"
+                                               Foreground="#616161" Margin="0,8,0,15" />
+                                    <TextBlock Text="📁 项目文件" Foreground="#757575"
+                                               Margin="0,5" FontSize="13" Cursor="Hand" />
+                                    <TextBlock Text="🔍 搜索替换" Foreground="#757575"
+                                               Margin="0,5" FontSize="13" Cursor="Hand" />
+                                    <TextBlock Text="🔧 设置选项" Foreground="#757575"
+                                               Margin="0,5" FontSize="13" Cursor="Hand" />
+                                    <TextBlock Text="📦 扩展插件" Foreground="#757575"
+                                               Margin="0,5" FontSize="13" Cursor="Hand" />
+                                    <Separator Margin="0,15,0,10" />
+                                    <TextBlock Text="📊 大纲视图" Foreground="#757575"
+                                               Margin="0,5" FontSize="13" Cursor="Hand" />
+                                    <TextBlock Text="⏱ 时间线" Foreground="#757575"
+                                               Margin="0,5" FontSize="13" Cursor="Hand" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border DockPanel.Dock="Right" Background="#FAFAFA"
+                                    Width="180" Padding="10">
+                                <StackPanel>
+                                    <TextBlock Text="属性面板" FontWeight="Bold" FontSize="14"
+                                               Foreground="#616161" Margin="0,8,0,15" />
+                                    <TextBlock Text="名称：TextBox1" Foreground="#757575"
+                                               Margin="0,3" FontSize="12" />
+                                    <TextBlock Text="宽度：Auto" Foreground="#757575"
+                                               Margin="0,3" FontSize="12" />
+                                    <TextBlock Text="高度：Auto" Foreground="#757575"
+                                               Margin="0,3" FontSize="12" />
+                                    <TextBlock Text="背景：White" Foreground="#757575"
+                                               Margin="0,3" FontSize="12" />
+                                    <TextBlock Text="边框：1px #BDBDBD" Foreground="#757575"
+                                               Margin="0,3" FontSize="12" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="White" Padding="15">
+                                <StackPanel>
+                                    <TextBlock Text="📝 内容区域（LastChildFill=True）"
+                                               FontWeight="Bold" FontSize="14"
+                                               Foreground="{StaticResource PrimaryBrush}" />
+                                    <TextBlock Text="这是 DockPanel 中最后一个子元素，自动填充了所有剩余空间。"
+                                               Foreground="#757575" FontSize="13"
+                                               TextWrapping="Wrap" Margin="0,8,0,0" />
+                                    <TextBlock Text="DockPanel 非常适合创建 IDE 风格的应用界面布局。"
+                                               Foreground="#757575" FontSize="13"
+                                               TextWrapping="Wrap" Margin="0,5,0,0" />
+                                    <TextBlock Text="Dock 顺序很重要：先定义的元素先占用边缘空间。"
+                                               Foreground="#757575" FontSize="13"
+                                               TextWrapping="Wrap" Margin="0,5,0,0" />
+                                </StackPanel>
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="🎯 LastChildFill 对比" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="对比 LastChildFill 属性为 True 和 False 的区别"
+                               Foreground="#757575" Margin="0,0,0,10" />
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="#BBDEFB" BorderThickness="2" CornerRadius="4"
+                                Padding="5" Margin="5" Background="White" MinWidth="320">
+                            <StackPanel>
+                                <TextBlock Text="LastChildFill=True（默认）" FontWeight="Bold"
+                                           Foreground="#1565C0" Margin="0,0,0,8" />
+                                <DockPanel LastChildFill="True" Height="120"
+                                           Background="#F5F5F5">
+                                    <Border DockPanel.Dock="Top" Background="#42A5F5"
+                                            Height="25" Padding="5,3">
+                                        <TextBlock Text="Top" Foreground="White" FontSize="11" />
+                                    </Border>
+                                    <Border DockPanel.Dock="Left" Background="#66BB6A"
+                                            Width="60" Padding="5,3">
+                                        <TextBlock Text="Left" Foreground="White" FontSize="11" />
+                                    </Border>
+                                    <Border DockPanel.Dock="Bottom" Background="#EF5350"
+                                            Height="25" Padding="5,3">
+                                        <TextBlock Text="Bottom" Foreground="White" FontSize="11" />
+                                    </Border>
+                                    <Border Background="#FFEE58" Padding="5">
+                                        <TextBlock Text="最后元素（填满剩余空间）"
+                                                   FontSize="12" Foreground="#F57F17" />
+                                    </Border>
+                                </DockPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border BorderBrush="#FFCDD2" BorderThickness="2" CornerRadius="4"
+                                Padding="5" Margin="5" Background="White" MinWidth="320">
+                            <StackPanel>
+                                <TextBlock Text="LastChildFill=False" FontWeight="Bold"
+                                           Foreground="#C62828" Margin="0,0,0,8" />
+                                <DockPanel LastChildFill="False" Height="120"
+                                           Background="#F5F5F5">
+                                    <Border DockPanel.Dock="Top" Background="#42A5F5"
+                                            Height="25" Padding="5,3">
+                                        <TextBlock Text="Top" Foreground="White" FontSize="11" />
+                                    </Border>
+                                    <Border DockPanel.Dock="Left" Background="#66BB6A"
+                                            Width="60" Padding="5,3">
+                                        <TextBlock Text="Left" Foreground="White" FontSize="11" />
+                                    </Border>
+                                    <Border DockPanel.Dock="Bottom" Background="#EF5350"
+                                            Height="25" Padding="5,3">
+                                        <TextBlock Text="Bottom" Foreground="White" FontSize="11" />
+                                    </Border>
+                                    <Border Background="#FFEE58" Padding="5"
+                                            HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Text="最后元素（不填充）"
+                                                   FontSize="12" Foreground="#F57F17" />
+                                    </Border>
+                                </DockPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="💡 DockPanel 关键要点" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="• DockPanel 的元素停靠顺序很重要：先定义的先占据边缘"
+                               Foreground="#616161" Margin="0,2,0,0" />
+                    <TextBlock Text="• LastChildFill=True（默认）时，最后一个元素会自动填充剩余空间"
+                               Foreground="#616161" Margin="0,2,0,0" />
+                    <TextBlock Text="• 多个相同Dock方向的元素会按顺序相邻排列"
+                               Foreground="#616161" Margin="0,2,0,0" />
+                    <TextBlock Text="• 非常适合构建典型的桌面应用界面布局"
+                               Foreground="#616161" Margin="0,2,0,0" />
+                    <TextBlock Text="• 常与 Menu、ToolBar、StatusBar 等控件配合使用"
+                               Foreground="#616161" Margin="0,2,0,0" />
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

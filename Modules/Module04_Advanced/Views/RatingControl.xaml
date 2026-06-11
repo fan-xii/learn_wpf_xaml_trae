@@ -1,0 +1,24 @@
+<UserControl x:Class="LearnXaml.Modules.Module04_Advanced.Views.RatingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LearnXaml.Modules.Module04_Advanced.Views"
+             x:Name="Root">
+
+    <StackPanel x:Name="StarsPanel" Orientation="Horizontal">
+        <TextBlock Text="★" FontSize="28" Cursor="Hand" Tag="0"
+                   MouseEnter="OnStarMouseEnter" MouseLeave="OnStarMouseLeave"
+                   MouseLeftButtonDown="OnStarClick" />
+        <TextBlock Text="★" FontSize="28" Cursor="Hand" Tag="1"
+                   MouseEnter="OnStarMouseEnter" MouseLeave="OnStarMouseLeave"
+                   MouseLeftButtonDown="OnStarClick" />
+        <TextBlock Text="★" FontSize="28" Cursor="Hand" Tag="2"
+                   MouseEnter="OnStarMouseEnter" MouseLeave="OnStarMouseLeave"
+                   MouseLeftButtonDown="OnStarClick" />
+        <TextBlock Text="★" FontSize="28" Cursor="Hand" Tag="3"
+                   MouseEnter="OnStarMouseEnter" MouseLeave="OnStarMouseLeave"
+                   MouseLeftButtonDown="OnStarClick" />
+        <TextBlock Text="★" FontSize="28" Cursor="Hand" Tag="4"
+                   MouseEnter="OnStarMouseEnter" MouseLeave="OnStarMouseLeave"
+                   MouseLeftButtonDown="OnStarClick" />
+    </StackPanel>
+</UserControl>

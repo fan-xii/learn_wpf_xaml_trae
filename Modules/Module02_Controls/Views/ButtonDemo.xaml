@@ -1,0 +1,163 @@
+<Page x:Class="LearnXaml.Modules.Module02_Controls.Views.ButtonDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:LearnXaml.Modules.Module02_Controls.Views"
+      Title="Button 按钮控件"
+      Background="{StaticResource BgBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <TextBlock Text="🔘 Button 按钮控件详解" Style="{StaticResource TitleText}" />
+            <TextBlock Text="Button 是 WPF 中最基本的交互控件，继承自 ButtonBase，提供 Click 事件。"
+                       Foreground="#757575" Margin="0,0,0,20" FontSize="14" />
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="1. 基础按钮变体" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="WPF 提供三种按钮基础类型：Button（普通按钮）、ToggleButton（切换按钮）、RepeatButton（重复按钮）"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <WrapPanel Margin="0,0,0,10">
+                        <Button x:Name="BtnNormal" Content="普通按钮 (Button)"
+                                Style="{StaticResource DemoButton}" Click="BtnNormal_Click" />
+                        <Button x:Name="BtnColored" Content="彩色按钮"
+                                Style="{StaticResource DemoButton}" Background="{StaticResource AccentBrush}"
+                                Click="BtnColored_Click" />
+                        <Button x:Name="BtnDanger" Content="危险按钮"
+                                Style="{StaticResource DemoButton}" Background="{StaticResource DangerBrush}"
+                                Click="BtnDanger_Click" />
+                        <Button x:Name="BtnSecondary" Content="次要按钮"
+                                Style="{StaticResource DemoButton}" Background="{StaticResource SecondaryBrush}"
+                                Click="BtnSecondary_Click" />
+                    </WrapPanel>
+
+                    <WrapPanel Margin="0,0,0,10">
+                        <ToggleButton x:Name="ToggleBtn" Content="ToggleButton (切换按钮)"
+                                      Style="{StaticResource DemoButton}" Background="#9C27B0"
+                                      Checked="ToggleBtn_Checked" Unchecked="ToggleBtn_Unchecked" />
+                        <RepeatButton x:Name="RepeatBtn" Content="RepeatButton (按住重复触发)"
+                                      Style="{StaticResource DemoButton}" Background="#00BCD4"
+                                      Click="RepeatBtn_Click" Delay="500" Interval="100" />
+                    </WrapPanel>
+
+                    <TextBlock Text="ToggleButton 状态: " FontSize="13" Foreground="#616161" Margin="0,5,0,0" />
+                    <TextBlock x:Name="TxtToggleStatus" Text="未按下" FontSize="14" FontWeight="Bold"
+                               Foreground="{StaticResource PrimaryBrush}" Margin="0,2,0,0" />
+
+                    <TextBlock Text="RepeatButton 点击计数: " FontSize="13" Foreground="#616161" Margin="0,8,0,0" />
+                    <TextBlock x:Name="TxtRepeatCount" Text="0" FontSize="14" FontWeight="Bold"
+                               Foreground="#00BCD4" Margin="0,2,0,0" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="2. 按钮尺寸与变体" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="通过 Padding 和 FontSize 控制按钮大小，Background 控制颜色。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <WrapPanel VerticalAlignment="Center" Margin="0,0,0,10">
+                        <Button Content="小按钮" Style="{StaticResource DemoButton}"
+                                Padding="8,4" FontSize="12" Background="#78909C" />
+                        <Button Content="中按钮" Style="{StaticResource DemoButton}"
+                                Padding="16,8" FontSize="14" Background="{StaticResource PrimaryBrush}" />
+                        <Button Content="大按钮" Style="{StaticResource DemoButton}"
+                                Padding="24,12" FontSize="18" Background="#1E88E5" />
+                        <Button Content="超大按钮" Style="{StaticResource DemoButton}"
+                                Padding="32,18" FontSize="22" Background="#0D47A1" />
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="3. IsDefault 与 IsCancel 属性" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="IsDefault=True 的按钮响应 Enter 键，IsCancel=True 的按钮响应 Escape 键。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <StackPanel>
+                        <TextBlock Text="请在下方输入框中聚焦后按 Enter 或 Escape 测试:" Foreground="#616161" Margin="0,0,0,8" />
+                        <TextBox x:Name="TxtDefaultCancelTest" Width="300" Height="28" Margin="0,0,0,10"
+                                 Padding="5" BorderBrush="#BDBDBD" BorderThickness="1" />
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="BtnDefault" Content="确定 (IsDefault, Enter键响应)"
+                                    Style="{StaticResource DemoButton}" IsDefault="True"
+                                    Background="{StaticResource AccentBrush}" Click="BtnDefault_Click" />
+                            <Button x:Name="BtnCancel" Content="取消 (IsCancel, Escape键响应)"
+                                    Style="{StaticResource DemoButton}" IsCancel="True"
+                                    Background="#9E9E9E" Click="BtnCancel_Click" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="4. 带图标的按钮" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="可以使用 StackPanel 或 Grid 在按钮中组合图标和文本。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <WrapPanel>
+                        <Button Style="{StaticResource DemoButton}" Background="#FF5722"
+                                Click="BtnIcon_Click" Tag="保存">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="💾" FontSize="16" Margin="0,0,6,0" />
+                                <TextBlock Text="保存" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource DemoButton}" Background="{StaticResource AccentBrush}"
+                                Click="BtnIcon_Click" Tag="添加">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="➕" FontSize="16" Margin="0,0,6,0" />
+                                <TextBlock Text="添加" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource DemoButton}" Background="{StaticResource DangerBrush}"
+                                Click="BtnIcon_Click" Tag="删除">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="🗑" FontSize="16" Margin="0,0,6,0" />
+                                <TextBlock Text="删除" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource DemoButton}" Background="#607D8B"
+                                Click="BtnIcon_Click" Tag="设置">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="⚙" FontSize="16" Margin="0,0,6,0" />
+                                <TextBlock Text="设置" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="5. IsEnabled 禁用状态" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="通过 IsEnabled 属性控制按钮是否可用，禁用的按钮显示灰色且不响应点击。"
+                               Foreground="#757575" FontSize="13" Margin="0,0,0,10" />
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="启用状态" Style="{StaticResource DemoButton}"
+                                Background="{StaticResource PrimaryBrush}" />
+                        <Button Content="禁用状态" Style="{StaticResource DemoButton}"
+                                IsEnabled="False" Background="#BDBDBD" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}" Background="#FFF8E1" BorderBrush="#FFE082">
+                <StackPanel>
+                    <TextBlock Text="📢 事件输出面板" Style="{StaticResource SubTitleText}"
+                               Foreground="#F57F17" />
+                    <TextBlock x:Name="TxtEventLog" Text="等待按钮点击事件..."
+                               FontSize="14" Foreground="#616161"
+                               TextWrapping="Wrap" MinHeight="40" />
+                    <Button x:Name="BtnClearLog" Content="清空日志" Style="{StaticResource DemoButton}"
+                            Background="#FFA000" FontSize="12" Padding="10,5"
+                            HorizontalAlignment="Left" Margin="0,10,0,0"
+                            Click="BtnClearLog_Click" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

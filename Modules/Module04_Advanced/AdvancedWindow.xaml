@@ -1,0 +1,27 @@
+<Window x:Class="LearnXaml.Modules.Module04_Advanced.AdvancedWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:LearnXaml.Modules.Module04_Advanced"
+        Title="🚀 高级主题" Height="750" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BgBrush}">
+
+    <TabControl x:Name="MainTabControl" Margin="10"
+                SelectionChanged="MainTabControl_SelectionChanged">
+        <TabItem Header="📊 数据绑定" Tag="DataBindingDemo">
+            <Frame x:Name="DataBindingFrame" NavigationUIVisibility="Hidden" />
+        </TabItem>
+        <TabItem Header="🏗 MVVM 模式" Tag="MvvmDemo">
+            <Frame x:Name="MvvmFrame" NavigationUIVisibility="Hidden" />
+        </TabItem>
+        <TabItem Header="🎬 动画效果" Tag="AnimationDemo">
+            <Frame x:Name="AnimationFrame" NavigationUIVisibility="Hidden" />
+        </TabItem>
+        <TabItem Header="🎛 自定义控件" Tag="CustomControlDemo">
+            <Frame x:Name="CustomControlFrame" NavigationUIVisibility="Hidden" />
+        </TabItem>
+        <TabItem Header="🔄 值转换器" Tag="ConverterDemo">
+            <Frame x:Name="ConverterFrame" NavigationUIVisibility="Hidden" />
+        </TabItem>
+    </TabControl>
+</Window>

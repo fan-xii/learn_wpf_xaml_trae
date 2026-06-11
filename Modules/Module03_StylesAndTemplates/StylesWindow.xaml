@@ -1,0 +1,53 @@
+<Window x:Class="LearnXaml.Modules.Module03_StylesAndTemplates.StylesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="🎨 样式与模板" Height="750" Width="1100"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource BgBrush}">
+
+    <Window.Resources>
+        <Style x:Key="TabItemHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="8,2" />
+        </Style>
+    </Window.Resources>
+
+    <TabControl x:Name="MainTabControl" Margin="10"
+                SelectionChanged="MainTabControl_SelectionChanged">
+        <TabItem x:Name="TabStyleBasics" Tag="StyleBasicsDemo">
+            <TabItem.Header>
+                <TextBlock Text="📝 样式基础" Style="{StaticResource TabItemHeaderStyle}" />
+            </TabItem.Header>
+            <Frame x:Name="FrameStyleBasics" NavigationUIVisibility="Hidden" />
+        </TabItem>
+
+        <TabItem x:Name="TabControlTemplate" Tag="ControlTemplateDemo">
+            <TabItem.Header>
+                <TextBlock Text="🔧 控件模板" Style="{StaticResource TabItemHeaderStyle}" />
+            </TabItem.Header>
+            <Frame x:Name="FrameControlTemplate" NavigationUIVisibility="Hidden" />
+        </TabItem>
+
+        <TabItem x:Name="TabDataTemplate" Tag="DataTemplateDemo">
+            <TabItem.Header>
+                <TextBlock Text="📋 数据模板" Style="{StaticResource TabItemHeaderStyle}" />
+            </TabItem.Header>
+            <Frame x:Name="FrameDataTemplate" NavigationUIVisibility="Hidden" />
+        </TabItem>
+
+        <TabItem x:Name="TabResourceDict" Tag="ResourceDictionaryDemo">
+            <TabItem.Header>
+                <TextBlock Text="📦 资源字典" Style="{StaticResource TabItemHeaderStyle}" />
+            </TabItem.Header>
+            <Frame x:Name="FrameResourceDict" NavigationUIVisibility="Hidden" />
+        </TabItem>
+
+        <TabItem x:Name="TabTrigger" Tag="TriggerDemo">
+            <TabItem.Header>
+                <TextBlock Text="⚡ 触发器" Style="{StaticResource TabItemHeaderStyle}" />
+            </TabItem.Header>
+            <Frame x:Name="FrameTrigger" NavigationUIVisibility="Hidden" />
+        </TabItem>
+    </TabControl>
+</Window>

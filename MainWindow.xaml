@@ -1,0 +1,62 @@
+<Window x:Class="LearnXaml.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:LearnXaml"
+        Title="WPF XAML 学习平台" Height="650" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BgBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="40">
+            <TextBlock Text="WPF XAML 系统学习平台"
+                       FontSize="32" FontWeight="Bold"
+                       Foreground="{StaticResource PrimaryBrush}"
+                       HorizontalAlignment="Center" Margin="0,20,0,10" />
+
+            <TextBlock Text="从零开始，由浅入深，系统掌握 WPF XAML UI 编程"
+                       FontSize="16" Foreground="#757575"
+                       HorizontalAlignment="Center" Margin="0,0,0,40" />
+
+            <WrapPanel HorizontalAlignment="Center" ItemWidth="280" ItemHeight="160">
+                <Button x:Name="BtnModule1" Style="{StaticResource NavCardButton}"
+                        Tag="📐" Content="一、XAML 布局基础"
+                        Click="BtnModule1_Click" />
+                <Button x:Name="BtnModule2" Style="{StaticResource NavCardButton}"
+                        Tag="🎛" Content="二、常用控件详解"
+                        Click="BtnModule2_Click" />
+                <Button x:Name="BtnModule3" Style="{StaticResource NavCardButton}"
+                        Tag="🎨" Content="三、样式与模板"
+                        Click="BtnModule3_Click" />
+                <Button x:Name="BtnModule4" Style="{StaticResource NavCardButton}"
+                        Tag="🚀" Content="四、高级主题"
+                        Click="BtnModule4_Click" />
+            </WrapPanel>
+
+            <Border Style="{StaticResource SectionBorder}" Margin="0,40,0,0">
+                <StackPanel>
+                    <TextBlock Text="📖 学习路径建议" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="1. 从「布局基础」开始，掌握 WPF 的核心布局系统" Margin="0,3,0,0" Foreground="#616161" />
+                    <TextBlock Text="2. 学习「常用控件」，了解 WPF 提供的各种内置 UI 控件" Margin="0,3,0,0" Foreground="#616161" />
+                    <TextBlock Text="3. 深入「样式与模板」，学会自定义和统一 UI 外观" Margin="0,3,0,0" Foreground="#616161" />
+                    <TextBlock Text="4. 攻克「高级主题」，掌握 MVVM、数据绑定、动画等进阶技能" Margin="0,3,0,0" Foreground="#616161" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SectionBorder}">
+                <StackPanel>
+                    <TextBlock Text="📚 项目结构" Style="{StaticResource SubTitleText}" />
+                    <TextBlock Text="Models/       - 数据模型" Foreground="#757575" />
+                    <TextBlock Text="ViewModels/   - MVVM 视图模型" Foreground="#757575" />
+                    <TextBlock Text="Converters/   - 值转换器" Foreground="#757575" />
+                    <TextBlock Text="Resources/    - 共享资源与样式" Foreground="#757575" />
+                    <TextBlock Text="Modules/      - 各学习模块" Foreground="#757575" />
+                    <TextBlock Text="Docs/         - 学习指南文档" Foreground="#757575" />
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="Happy Coding! 🎉" FontSize="14"
+                       Foreground="#BDBDBD" HorizontalAlignment="Center"
+                       Margin="0,30,0,20" />
+        </StackPanel>
+    </ScrollViewer>
+</Window>
