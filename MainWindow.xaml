@@ -4,18 +4,25 @@
         xmlns:local="clr-namespace:LearnXaml"
         Title="WPF XAML 学习平台" Height="650" Width="1100"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource BgBrush}">
+        Background="{StaticResource BgBrush}"
+        TextOptions.TextFormattingMode="Display"
+        UseLayoutRounding="True">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="40">
-            <TextBlock Text="WPF XAML 系统学习平台"
-                       FontSize="32" FontWeight="Bold"
-                       Foreground="{StaticResource PrimaryBrush}"
-                       HorizontalAlignment="Center" Margin="0,20,0,10" />
-
-            <TextBlock Text="从零开始，由浅入深，系统掌握 WPF XAML UI 编程"
-                       FontSize="16" Foreground="#757575"
-                       HorizontalAlignment="Center" Margin="0,0,0,40" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                <Border Width="60" Height="60" CornerRadius="8" Background="#FF2196F3"
+                        HorizontalAlignment="Left" Margin="0,0,20,0">
+                    <TextBlock Text="📚" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="WPF XAML 系统学习平台"
+                               FontSize="32" FontWeight="Bold"
+                               Foreground="{StaticResource PrimaryBrush}" />
+                    <TextBlock Text="从零开始，由浅入深，系统掌握 WPF XAML UI 编程"
+                               FontSize="16" Foreground="#757575" />
+                </StackPanel>
+            </StackPanel>
 
             <WrapPanel HorizontalAlignment="Center" ItemWidth="280" ItemHeight="160">
                 <Button x:Name="BtnModule1" Style="{StaticResource NavCardButton}"

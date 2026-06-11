@@ -33,6 +33,11 @@ public partial class StylesWindow : Window
         NavigateFrame("StyleBasicsDemo");
     }
 
+    private void BtnBack_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
+    }
+
     private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (MainTabControl.SelectedItem is TabItem tabItem && tabItem.Tag is string pageKey)

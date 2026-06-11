@@ -21,6 +21,11 @@ public partial class AdvancedWindow : Window
         NavigateFrame(DataBindingFrame, "DataBindingDemo");
     }
 
+    private void BtnBack_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
+    }
+
     private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (e.AddedItems.Count > 0 && e.AddedItems[0] is TabItem selectedTab)

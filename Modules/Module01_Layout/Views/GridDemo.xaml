@@ -3,7 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="clr-namespace:LearnXaml.Modules.Module01_Layout.Views"
       Title="Grid 网格布局"
-      Background="{StaticResource BgBrush}">
+      Background="{StaticResource BgBrush}"
+      TextOptions.TextFormattingMode="Display"
+      UseLayoutRounding="True">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="20">
@@ -28,8 +30,9 @@
                     <TextBlock Text="展示 Auto（根据内容自动）、*（比例分配）、固定像素 三种尺寸模式" 
                                Foreground="#757575" Margin="0,0,0,10" />
 
-                    <Grid ShowGridLines="True" Height="120" Background="White">
+                    <Grid ShowGridLines="True" Height="160" Background="White">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="2*" />
@@ -41,26 +44,26 @@
                             <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Auto行" Grid.Row="0" Grid.Column="1"
+                        <TextBlock Text="Auto Column" Grid.Row="0" Grid.Column="0"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Foreground="#1976D2" FontWeight="Bold" />
-                        <TextBlock Text="1*行" Grid.Row="1" Grid.Column="1"
+                        <TextBlock Text="1* Column" Grid.Row="0" Grid.Column="1"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Foreground="#388E3C" FontWeight="Bold" />
-                        <TextBlock Text="2*行(大两倍)" Grid.Row="2" Grid.Column="1"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Foreground="#E64A19" FontWeight="Bold" />
-                        <TextBlock Text="40px固定" Grid.Row="3" Grid.Column="1"
+                        <TextBlock Text="100px Column" Grid.Row="0" Grid.Column="2"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Foreground="#7B1FA2" FontWeight="Bold" />
 
-                        <TextBlock Text="Auto列" Grid.Row="1" Grid.Column="0"
+                        <TextBlock Text="Auto Row" Grid.Row="1" Grid.Column="0"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Foreground="#1976D2" FontWeight="Bold" />
-                        <TextBlock Text="*列" Grid.Row="1" Grid.Column="1"
+                        <TextBlock Text="1* Row" Grid.Row="2" Grid.Column="0"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Foreground="#388E3C" FontWeight="Bold" />
-                        <TextBlock Text="100px" Grid.Row="1" Grid.Column="2"
+                        <TextBlock Text="2* Row" Grid.Row="3" Grid.Column="0"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Foreground="#E64A19" FontWeight="Bold" />
+                        <TextBlock Text="40px Row" Grid.Row="4" Grid.Column="0"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Foreground="#7B1FA2" FontWeight="Bold" />
                     </Grid>

@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="📐 XAML 布局基础" Height="720" Width="1100"
         WindowStartupLocation="CenterOwner"
-        Background="{StaticResource BgBrush}">
+        Background="{StaticResource BgBrush}"
+        TextOptions.TextFormattingMode="Display"
+        UseLayoutRounding="True">
 
     <Grid Margin="15">
         <Grid.RowDefinitions>
@@ -15,8 +17,12 @@
             <Button Content="← 返回主菜单" Style="{StaticResource DemoButton}"
                     Background="{StaticResource SecondaryBrush}"
                     Click="BackButton_Click" />
-            <TextBlock Text="📐 XAML 布局基础" Style="{StaticResource TitleText}"
-                       VerticalAlignment="Center" Margin="15,0,0,0" />
+            <Border Width="48" Height="48" CornerRadius="6" Background="#FF4CAF50"
+                    Margin="20,0,12,0">
+                <TextBlock Text="📐" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <TextBlock Text="XAML 布局基础" Style="{StaticResource TitleText}"
+                       VerticalAlignment="Center" />
         </StackPanel>
 
         <Grid Grid.Row="1">

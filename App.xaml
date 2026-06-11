@@ -14,6 +14,56 @@
             <conv:PriceToBackgroundConverter x:Key="PriceToBackgroundConverter" />
             <conv:StringNotEmptyConverter x:Key="StringNotEmptyConverter" />
             <conv:NotNullToBoolConverter x:Key="NotNullToBoolConverter" />
+
+            <DrawingImage x:Key="MainWindowIcon">
+                <DrawingImage.Drawing>
+                    <GeometryDrawing Brush="#FF2196F3">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M12,2L2,12L12,22L22,12L12,2Z M12,6L18,12L12,18L6,12L12,6Z" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+
+            <DrawingImage x:Key="LayoutWindowIcon">
+                <DrawingImage.Drawing>
+                    <GeometryDrawing Brush="#FF4CAF50">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M2,2H22V22H2V2Z M2,2H12V22H2V2Z M2,2H22V12H2V2Z" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+
+            <DrawingImage x:Key="ControlsWindowIcon">
+                <DrawingImage.Drawing>
+                    <GeometryDrawing Brush="#FFFF9800">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M4,4H20V20H4V4Z M8,8H12V16H8V8Z M14,8H16V12H14V8Z M14,14H16V16H14V14Z" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+
+            <DrawingImage x:Key="StylesWindowIcon">
+                <DrawingImage.Drawing>
+                    <GeometryDrawing Brush="#FF9C27B0">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M2,2H22V22H2V2Z M12,6L6,18L12,14L18,18L12,6Z" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+
+            <DrawingImage x:Key="AdvancedWindowIcon">
+                <DrawingImage.Drawing>
+                    <GeometryDrawing Brush="#FFF44336">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M12,2L13.5,7.5L20,9L15,13.5L16.5,20L12,16.5L7.5,20L9,13.5L4,9L10.5,7.5L12,2Z" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingImage.Drawing>
+            </DrawingImage>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
